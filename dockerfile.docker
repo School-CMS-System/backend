@@ -1,17 +1,17 @@
-# Use an official Java 17 image
+# Use Java 17 base image
 FROM eclipse-temurin:17-jdk
 
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy your Maven wrapper and project files
+# Copy the entire project into the container
 COPY . .
 
-# Make the Maven wrapper executable and build the JAR (skip tests for speed)
+# Give Maven wrapper execute permission and build the JAR
 RUN chmod +x mvnw && ./mvnw clean package -DskipTests
 
-# Expose port 8080 (Render uses this)
+# Expose port (Render will override this with its own)
 EXPOSE 8080
 
-# Start the Spring Boot application
+# Run the built Spring Boot application
 CMD ["java", "-jar", "target/cyberedge-0.0.1-SNAPSHOT.jar"]
