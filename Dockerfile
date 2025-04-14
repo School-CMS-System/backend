@@ -1,5 +1,5 @@
 # Use Java 17 base image
-FROM eclipse-temurin:17-jdk
+FROM flopes/spring-boot-docker:1.1
 
 # Set the working directory inside the container
 WORKDIR /app
